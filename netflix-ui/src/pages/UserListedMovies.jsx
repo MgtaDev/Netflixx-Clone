@@ -38,7 +38,7 @@ export default function UserListedMovies() {
       <div className="content flex column">
         <h1>My List</h1>
         <div className="grid flex">
-          {movies.map((movie, index) => {
+          {movies?.map((movie, index) => {
             return (
               <Card
                 movieData={movie}

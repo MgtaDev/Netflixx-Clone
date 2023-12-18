@@ -35,7 +35,7 @@ export default React.memo(function CardSlider({ data, title }) {
           <AiOutlineLeft onClick={() => handleDirection("left")} />
         </div>
         <div className="slider flex" ref={listRef}>
-          {data.map((movie, index) => {
+          {data?.map((movie, index) => {
             return <Card movieData={movie} index={index} key={movie.id} />;
           })}
         </div>

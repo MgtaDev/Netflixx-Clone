@@ -2,14 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const userRoutes = require("./routes/UserRoutes");
 const mongoose = require("mongoose");
+require('dotenv').config()
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+// Conexion establecida a servicio mondoDb en railwary
 mongoose
-  .connect("mongodb://localhost:27017/netflix", {
+  .connect('mongodb://mongo:bAEGaa2FGFeFegHc6BaHdED13E-435Ge@viaduct.proxy.rlwy.net:37160',  {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
