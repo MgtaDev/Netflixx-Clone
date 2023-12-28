@@ -8,6 +8,10 @@ import styled from "styled-components";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import { firebaseAuth } from "../utils/firebase-config";
+import { motion } from 'framer-motion';
+
+
+
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -30,11 +34,21 @@ function Signup() {
   });
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -200 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.5 }}
+  >
     <Container showPassword={showPassword}>
       <BackgroundImage />
       <div className="content">
         <Header login />
-        <div className="body flex column a-center j-center">
+        <motion.div
+    initial={{ opacity: 0, y: -200 }}
+    animate={{ opacity: 1, y: 100 }}
+    transition={{ delay: 1 }}
+  >
+<div className="body flex column a-center j-center">
           <div className="text flex column">
             <h1>Unlimited movies, TV shows and more.</h1>
             <h4>Watch anywhere. Cancel anytime.</h4>
@@ -75,8 +89,11 @@ function Signup() {
           </div>
           {showPassword && <button onClick={handleSignIn}>Log In</button>}
         </div>
+  </motion.div>
       </div>
     </Container>
+  </motion.div>
+
   );
 }
 

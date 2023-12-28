@@ -128,7 +128,7 @@ const Container = styled.div`
     border-radius: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
-    transition: 0.3s ease-in-out;
+    transition: 3s ease-in-out;
     .image-video-container {
       position: relative;
       height: 140px;

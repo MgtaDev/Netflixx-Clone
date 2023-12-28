@@ -113,11 +113,12 @@ const Container = styled.div`
         }
       }
       .search {
+        border-radius: 1rem;
         display: flex;
         gap: 0.4rem;
         align-items: center;
         justify-content: center;
-        padding: 0.2rem;
+        padding: 0.3rem;
         padding-left: 0.5rem;
         button {
           background-color: transparent;
@@ -136,7 +137,7 @@ const Container = styled.div`
           visibility: hidden;
           transition: 0.3s ease-in-out;
           background-color: transparent;
-          border: none;
+          border:none;
           color: white;
           &:focus {
             outline: none;

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { getUsersLikedMovies } from "../store";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from 'framer-motion';
 
 export default function UserListedMovies() {
   const movies = useSelector((state) => state.netflix.movies);
@@ -36,9 +37,22 @@ export default function UserListedMovies() {
     <Container>
       <Navbar isScrolled={isScrolled} />
       <div className="content flex column">
+      <motion.div
+      initial={{ opacity: 0, y: -200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
         <h1>My List</h1>
+    </motion.div>
+
+    <motion.div
+      initial={{ opacity: 0, y: -200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1 }}
+    >
         <div className="grid flex">
-          {movies?.map((movie, index) => {
+     
+      {movies?.map((movie, index) => {
             return (
               <Card
                 movieData={movie}
@@ -48,7 +62,9 @@ export default function UserListedMovies() {
               />
             );
           })}
+        
         </div>
+    </motion.div>
       </div>
     </Container>
   );

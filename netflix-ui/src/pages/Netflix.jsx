@@ -13,6 +13,8 @@ import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Slider from "../components/Slider";
 import Footer from "../components/Footer";
+import { motion } from 'framer-motion';
+
 function Netflix() {
   const [isScrolled, setIsScrolled] = useState(false);
   const movies = useSelector((state) => state.netflix.movies);
@@ -45,7 +47,13 @@ function Netflix() {
 
   return (
     <Container>
+      <motion.div
+        initial={{ opacity: 0, y: -200 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+      >
       <Navbar isScrolled={isScrolled} />
+
       <div className="hero">
         <img
           src={backgroundImage}
@@ -56,7 +64,12 @@ function Netflix() {
           <div className="logo">
             <img src={MovieLogo} alt="Movie Logo" />
           </div>
-          <div className="buttons flex">
+          <motion.div
+      initial={{ opacity: 0, y: -200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1 }}
+    >
+ <div className="buttons flex">
             <button
               onClick={() => navigate("/player")}
               className="flex j-center a-center"
@@ -69,8 +82,11 @@ function Netflix() {
               More Info
             </button>
           </div>
+    </motion.div>
+         
         </div>
       </div>
+      </motion.div>
       <Slider movies={movies} />
       <Footer/>
     </Container>

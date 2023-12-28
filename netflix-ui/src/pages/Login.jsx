@@ -7,11 +7,13 @@ import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
+import { motion } from 'framer-motion';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  
 
   const handleLogin = async () => {
     try {
@@ -26,11 +28,21 @@ function Login() {
   });
 
   return (
+    <motion.div
+    initial={{ opacity: 0, x: -200 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.5 }}
+  >
     <Container>
       <BackgroundImage />
       <div className="content">
         <Header />
-        <div className="form-container flex column a-center j-center">
+        <motion.div
+    initial={{ opacity: 0, y: -200 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 1 }}
+  >
+<div className="form-container flex column a-center j-center">
           <div className="form flex column a-center j-center">
             <div className="title">
               <h3>Login</h3>
@@ -52,8 +64,12 @@ function Login() {
             </div>
           </div>
         </div>
+  </motion.div>
+        
       </div>
     </Container>
+  </motion.div>
+
   );
 }
 
@@ -67,10 +83,14 @@ const Container = styled.div`
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.5);
     grid-template-rows: 15vh 85vh;
+    .title{
+      font-size:30px
+    }
     .form-container {
-      gap: 2rem;
+      gap: 1.5rem;
       height: 85vh;
       .form {
+        border-radius:1rem;
         padding: 2rem;
         background-color: #000000b0;
         width: 25vw;
@@ -80,8 +100,10 @@ const Container = styled.div`
           gap: 2rem;
           input {
             padding: 0.5rem 1rem;
-            width: 15rem;
+            width: 20rem;
+            border-radius:.2rem;
           }
+        
           button {
             padding: 0.5rem 1rem;
             background-color: #e50914;

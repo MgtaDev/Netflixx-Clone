@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies, getGenres } from "../store";
 import SelectGenre from "../components/SelectGenre";
 import Slider from "../components/Slider";
+import { motion } from 'framer-motion'
 
 function TVShows() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,12 +45,25 @@ function TVShows() {
 
   return (
     <Container>
+  
       <Navbar isScrolled={isScrolled} />
+  
       <div className="data">
+      <motion.div
+      initial={{ opacity: 0, y: -200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
         <SelectGenre genres={genres} type="tv" />
+    </motion.div>
         {movies.length ? (
-          <>
+          <> <motion.div
+          initial={{ opacity: 0, x: -200 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1 }}
+        >
             <Slider movies={movies} />
+        </motion.div>
           </>
         ) : (
           <h1 className="not-available">

@@ -10,6 +10,7 @@ import { fetchMovies, getGenres } from "../store";
 import SelectGenre from "../components/SelectGenre";
 import Slider from "../components/Slider";
 import NotAvailable from "../components/NotAvailable";
+import { motion } from 'framer-motion';
 
 function MoviePage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,11 +46,26 @@ function MoviePage() {
   return (
     <Container>
       <div className="navbar">
+     
         <Navbar isScrolled={isScrolled} />
+
+   
       </div>
       <div className="data">
+      <motion.div
+      initial={{ opacity: 0, y: -200 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
         <SelectGenre genres={genres} type="movie" />
+    </motion.div>
+    <motion.div
+      initial={{ opacity: 0, x: -200 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1 }}
+    >
         {movies.length ? <Slider movies={movies} /> : <NotAvailable />}
+    </motion.div>
       </div>
     </Container>
   );

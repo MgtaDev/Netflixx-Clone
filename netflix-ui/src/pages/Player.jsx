@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import video from "../assets/One Piece _ Tráiler oficial _ Netflix.mp4";
+import { motion } from 'framer-motion';
+
 export default function Player() {
   const navigate = useNavigate();
 
