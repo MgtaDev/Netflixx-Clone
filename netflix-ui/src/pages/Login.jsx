@@ -8,16 +8,38 @@ import Header from "../components/Header";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { motion } from 'framer-motion';
+import { validate } from '../utils/validation'
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputs, setinputs] = useState({
+    email: '' ,
+    password: ''
+  })
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({
+    email: '',
+    password: ''
+  })
+  console.log(inputs);
+  console.log(errors);
   
+  function handleChange (e){
+    setinputs({
+      ...inputs,
+      [e.target.name] : e.target.value
+    })
+    setErrors(
+      validate({
+        ...inputs,
+        [e.target.name] : e.target.value
+      })
+    )
+  
+  }
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(firebaseAuth, email, password);
+      await signInWithEmailAndPassword(firebaseAuth, inputs.email, inputs.password);
     } catch (error) {
       console.log(error.code);
     }
@@ -43,6 +65,11 @@ function Login() {
     transition={{ delay: 1 }}
   >
 <div className="form-container flex column a-center j-center">
+          <div className="border-2 border-blue px-4 py-3">
+          {errors.email && <div className={`${errors}`}><p className="errors">{errors.email}</p></div> }
+          {errors.password && <div className={`${errors} `}><p className="errors">{errors.password}</p></div> }
+          </div>
+         
           <div className="form flex column a-center j-center">
             <div className="title">
               <h3>Login</h3>
@@ -51,14 +78,16 @@ function Login() {
               <input
                 type="text"
                 placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
+                onChange={handleChange}
+                name="email"
+                value={inputs.email}
               />
               <input
                 type="password"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                onChange={handleChange}
+                name="password"
+                value={inputs.password}
               />
               <button onClick={handleLogin}>Login to your account</button>
             </div>
@@ -91,7 +120,7 @@ const Container = styled.div`
       height: 85vh;
       .form {
         border-radius:1rem;
-        padding: 2rem;
+        padding: 2rem 0rem;
         background-color: #000000b0;
         width: 25vw;
         gap: 2rem;
@@ -100,7 +129,7 @@ const Container = styled.div`
           gap: 2rem;
           input {
             padding: 0.5rem 1rem;
-            width: 20rem;
+            width: 100%;
             border-radius:.2rem;
           }
         
